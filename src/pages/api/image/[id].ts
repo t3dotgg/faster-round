@@ -11,7 +11,9 @@ export async function get({ params }) {
     `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${mon}.png`
   );
 
-  data.headers.set("Cache-Control", "max-age=31536000, immutable");
+  const newRes = new Response(data.body);
 
-  return data;
+  newRes.headers.set("Cache-Control", "max-age=31536000, immutable");
+
+  return newRes;
 }
