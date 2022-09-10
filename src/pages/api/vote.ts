@@ -30,6 +30,10 @@ export async function post({ request }) {
   const ip = request[Object.getOwnPropertySymbols(request)[2]] ?? "127.0.0.1";
   console.log("ip?", ip);
 
+  console.log("request?", request);
+
+  console.log("protos?", Object.getOwnPropertySymbols(request));
+
   const { success, pending, limit, reset, remaining } = await ratelimit.limit(
     `mw_${ip}`
   );
