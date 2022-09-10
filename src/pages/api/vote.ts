@@ -27,9 +27,8 @@ const ratelimit = new Ratelimit({
 });
 
 export async function post({ request }) {
-  const ip = request.ip ?? "127.0.0.1";
-
-  console.log("ip?", request, Astro.clientAddress);
+  const ip = request[Object.getOwnPropertySymbols(request)[2]] ?? "127.0.0.1";
+  console.log("ip?", ip);
 
   const { success, pending, limit, reset, remaining } = await ratelimit.limit(
     `mw_${ip}`
