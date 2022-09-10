@@ -19,7 +19,7 @@ const PokemonListing: FunctionComponent<{
       key={props.pokemon}
     >
       <div className="text-xl text-center capitalize mt-[-0.5rem]">
-        {ALL_MONS[props.pokemon]}
+        {ALL_MONS[props.pokemon - 1]}
       </div>
       <img
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.pokemon}.png`}
