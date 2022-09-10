@@ -31,7 +31,7 @@ const getImageForMon = (mon: number) => `/api/image/${mon}.png`;
 
 // Cache this page
 const FIVE_MIN_IN_SECONDS = 5 * 60;
-Astro.response.headers.set("Cache-Control", `max-age=31536000, immutable`);
+Astro.response.headers.set("Cache-Control", `s-maxage=31536000, immutable`);
 ---
 
 <Layout title="Round But Faster">
