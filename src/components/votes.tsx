@@ -22,7 +22,7 @@ const PokemonListing: FunctionComponent<{
         {ALL_MONS[props.pokemon - 1]}
       </div>
       <img
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${props.pokemon}.png`}
+        src={`https://roundest.t3.gg/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2FPokeAPI%2Fsprites%2Fmaster%2Fsprites%2Fpokemon%2F${props.pokemon}.png&w=640&q=75`}
         width={256}
         height={256}
         layout="fixed"
