@@ -6,8 +6,7 @@ import { ALL_MONS } from "../data/mons";
 const btn =
   "inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm font-medium rounded-full text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500";
 
-const getImageForMon = (mon: number) =>
-  `https://roundest.t3.gg/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2FPokeAPI%2Fsprites%2Fmaster%2Fsprites%2Fpokemon%2F${mon}.png&w=640&q=75`;
+const getImageForMon = (mon: number) => `/api/image/${mon}.png`;
 
 const PokemonListing: FunctionComponent<{
   pokemon: number;
