@@ -1,7 +1,31 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-import { getOptionsForVote } from "../data/getRandom";
+import { getSortedPokemon } from "./api/results";
+
+const data = await getSortedPokemon();
+
+const generateCountPercent = (pokemon: any) => {
+  const VoteFor = pokemon._voteFor;
+  const VoteAgainst = pokemon._voteAgainst;
+  if (VoteFor + VoteAgainst === 0) {
+    return 0;
+  }
+  return (VoteFor / (VoteFor + VoteAgainst)) * 100;
+};
+
+const sorted = data.rows.sort((a, b) => {
+  const difference = generateCountPercent(b) - generateCountPercent(a);
+
+  if (difference === 0) {
+    return b._voteFor - a._voteFor;
+  }
+
+  return difference;
+});
+
+console.log("data", sorted[0]);
+const getImageForMon = (mon: number) => `/api/image/${mon}.png`;
 ---
 
 <Layout title="Round But Faster">
@@ -9,5 +33,16 @@ import { getOptionsForVote } from "../data/getRandom";
     class="h-screen w-screen flex flex-col justify-between items-center relative"
   >
     <div class="text-2xl text-center pt-8">TODO: Results page</div>
+    <div>
+      {
+        sorted.map((row) => {
+          return (
+            <div>
+              <img src={getImageForMon(row.id)} />
+            </div>
+          );
+        })
+      }
+    </div>
   </div>
 </Layout>
