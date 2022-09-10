@@ -1,5 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+import Counter from "../components/votes";
+import { getOptionsForVote } from "../data/getRandom";
+
+const options = getOptionsForVote();
 ---
 
 <Layout title="Round But Faster">
@@ -7,32 +12,17 @@ import Layout from "../layouts/Layout.astro";
     class="h-screen w-screen flex flex-col justify-between items-center relative"
   >
     <div class="text-2xl text-center pt-8">Which Pokémon is Rounder?</div>
-    <!-- {pokemonPair && (
-		<div class="p-8 flex justify-between items-center max-w-2xl flex-col md:flex-row animate-fade-in">
-			<PokemonListing
-				pokemon={pokemonPair.firstPokemon}
-				vote={() => voteForRoundest(pokemonPair.firstPokemon.id)}
-				disabled={fetchingNext}
-			/>
-			<div class="p-8 italic text-xl">{"or"}</div>
-			<PokemonListing
-				pokemon={pokemonPair.secondPokemon}
-				vote={() => voteForRoundest(pokemonPair.secondPokemon.id)}
-				disabled={fetchingNext}
-			/>
-			<div class="p-2" />
-		</div>
-	)}
-	{!pokemonPair && <img src="/rings.svg" class="w-48" />}
-	<div class="w-full text-xl text-center pb-2">
-		<a href="https://twitter.com/t3dotgg">Twitter</a>
-		<span class="p-4">{"-"}</span>
-		<Link href="/results">
-			<a>Results</a>
-		</Link>
-		<span class="p-4">{"-"}</span>
-		<Link href="/about">
-			<a>About</a>
-		</Link> -->
+
+    <Counter client:visible a={options[0]} b={options[1]}>
+      <h1>Hello, Preact!</h1>
+    </Counter>
+
+    <div class="w-full text-xl text-center pb-2">
+      <a href="https://twitter.com/t3dotgg">Twitter</a>
+      <span class="p-4">{"-"}</span>
+      <a href="/results"> Results</a>
+      <span class="p-4">{"-"}</span>
+      <a href="/about"> About</a>
+    </div>
   </div>
 </Layout>
