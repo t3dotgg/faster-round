@@ -61,7 +61,7 @@ const Voter: FunctionComponent<{ a: number; b: number }> = ({
   useEffect(() => {
     next
       .filter((i) => !hasBeenFetched.has(i))
-      .forEach((_, i) => {
+      .forEach((i) => {
         new Image().src = getImageForMon(i);
       });
   }, [next]);
