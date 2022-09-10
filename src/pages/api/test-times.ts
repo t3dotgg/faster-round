@@ -3,7 +3,7 @@ export async function get({ params }) {
 
   return new Response(JSON.stringify({ dateTime: dateTime.toLocaleString() }), {
     headers: {
-      "Cache-Control": `max-age=0, s-maxage=86400`,
+      "Cache-Control": `s-maxage=1, stale-while-revalidate`,
     },
   });
 }
