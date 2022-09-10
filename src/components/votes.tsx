@@ -75,6 +75,11 @@ const Voter: FunctionComponent<{ a: number; b: number }> = ({
     console.log("voted", vote, antiVote);
     // TODO - Do Vote
 
+    fetch("/api/vote", {
+      method: "POST",
+      body: JSON.stringify({ voteFor: vote, voteAgainst: antiVote }),
+    });
+
     // 2: update current state
     setCurrent(next);
 
