@@ -41,29 +41,45 @@ const PokemonListing: FunctionComponent<{
   );
 };
 
+let hasBeenFetched: Set<number> = new Set();
+
 const Voter: FunctionComponent<{ a: number; b: number }> = ({
   children,
   a,
   b,
 }) => {
-  const [left, setLeft] = useState(a);
-  const [right, setRight] = useState(b);
+  const [current, setCurrent] = useState([a, b] as const);
+  const [next, setNext] = useState(getOptionsForVote());
 
-  // Preload all images
+  // Store currently fetched images as they're cached
   useEffect(() => {
-    ALL_MONS.forEach((_, i) => {
-      new Image().src = getImageForMon(i);
-    });
-  }, []);
+    current.forEach((i) => hasBeenFetched.add(i));
+  }, [current]);
+
+  // Fetch "next" if we haven't yet
+  useEffect(() => {
+    next
+      .filter((i) => !hasBeenFetched.has(i))
+      .forEach((_, i) => {
+        new Image().src = getImageForMon(i);
+      });
+  }, [next]);
+
+  const [left, right] = current;
 
   // Update vote state
   const voteForRoundest = (vote: number) => {
+    // 1: process the vote
     const antiVote = vote === left ? right : left;
     console.log("voted", vote, antiVote);
+    // TODO - Do Vote
 
+    // 2: update current state
+    setCurrent(next);
+
+    // 3: update the "next" state with fresh options
     const newOptions = getOptionsForVote();
-    setLeft(newOptions[0]);
-    setRight(newOptions[1]);
+    setNext(newOptions);
   };
 
   return (
