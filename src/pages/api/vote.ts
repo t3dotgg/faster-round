@@ -2,7 +2,7 @@ const VOTE_SQL_STRING =
   "INSERT INTO `roundest-mon`.Vote (id,votedForId,votedAgainstId) VALUES (?, ?, ?)";
 
 import { connect } from "@planetscale/database";
-import { nanoid } from "nanoid";
+import cuid from "cuid";
 
 export const makeVote = async (voteFor: number, voteAgainst: number) => {
   const conn = connect({
@@ -10,7 +10,7 @@ export const makeVote = async (voteFor: number, voteAgainst: number) => {
     username: import.meta.env.DATABASE_USERNAME,
     password: import.meta.env.DATABASE_PASSWORD,
   });
-  return await conn.execute(VOTE_SQL_STRING, [nanoid(), voteFor, voteAgainst]);
+  return await conn.execute(VOTE_SQL_STRING, [cuid(), voteFor, voteAgainst]);
 };
 
 import { z } from "zod";
