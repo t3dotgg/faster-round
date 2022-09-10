@@ -10,9 +10,3 @@ export const getSortedPokemon = async () => {
   });
   return await conn.execute(RESULTS_QUERY, ["0", "1"]);
 };
-
-export async function get() {
-  const results = await getSortedPokemon();
-
-  return new Response(JSON.stringify({ pokemon: results.rows }));
-}
