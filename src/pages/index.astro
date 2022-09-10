@@ -13,9 +13,7 @@ const options = getOptionsForVote();
   >
     <div class="text-2xl text-center pt-8">Which Pokémon is Rounder?</div>
 
-    <Counter client:visible a={options[0]} b={options[1]}>
-      <h1>Hello, Preact!</h1>
-    </Counter>
+    <Counter client:visible a={options[0]} b={options[1]} />
 
     <div class="w-full text-xl text-center pb-2">
       <a href="https://twitter.com/t3dotgg">Twitter</a>
