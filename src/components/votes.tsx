@@ -29,6 +29,7 @@ const PokemonListing: FunctionComponent<{
         height={256}
         layout="fixed"
         className="animate-fade-in"
+        alt={`Sprite for ${ALL_MONS[props.pokemon - 1]}`}
       />
       <button
         className={btn}
