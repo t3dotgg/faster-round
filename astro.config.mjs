@@ -9,4 +9,11 @@ export default defineConfig({
   integrations: [preact(), tailwind()],
   output: "server",
   adapter: vercel(),
+  vite: {
+    resolve: {
+      alias: {
+        uuid: "node_modules/uuid/dist/esm-browser/index.js",
+      },
+    },
+  },
 });
