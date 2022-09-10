@@ -6,6 +6,9 @@ import { ALL_MONS } from "../data/mons";
 const btn =
   "inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm font-medium rounded-full text-gray-700 bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500";
 
+const getImageForMon = (mon: number) =>
+  `https://roundest.t3.gg/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2FPokeAPI%2Fsprites%2Fmaster%2Fsprites%2Fpokemon%2F${mon}.png&w=640&q=75`;
+
 const PokemonListing: FunctionComponent<{
   pokemon: number;
   vote: () => void;
@@ -22,7 +25,7 @@ const PokemonListing: FunctionComponent<{
         {ALL_MONS[props.pokemon - 1]}
       </div>
       <img
-        src={`https://roundest.t3.gg/_next/image?url=https%3A%2F%2Fraw.githubusercontent.com%2FPokeAPI%2Fsprites%2Fmaster%2Fsprites%2Fpokemon%2F${props.pokemon}.png&w=640&q=75`}
+        src={getImageForMon(props.pokemon)}
         width={256}
         height={256}
         layout="fixed"
@@ -50,7 +53,7 @@ const Voter: FunctionComponent<{ a: number; b: number }> = ({
   // Preload all images
   useEffect(() => {
     ALL_MONS.forEach((_, i) => {
-      new Image().src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`;
+      new Image().src = getImageForMon(i);
     });
   }, []);
 
