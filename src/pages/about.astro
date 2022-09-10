@@ -1,0 +1,52 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import Counter from "../components/votes";
+import { getOptionsForVote } from "../data/getRandom";
+
+const options = getOptionsForVote();
+---
+
+<Layout title="Round But Faster - About">
+  <div class="flex flex-col items-center text-xl">
+    <div class="flex flex-col items-center text-xl max-w-md md:max-w-lg">
+      <div class="contents text-center">
+        <h2 class="text-2xl p-4">About</h2>
+        <p>
+          I made <a
+            href="https://roundest.t3.gg"
+            class="text-blue-200 underline hover:text-blue-400">Roundest</a
+          > awhile back, and wanted to see how fast I can make it. Turns out I can
+          make it pretty fast lol.
+        </p>
+
+        <br />
+        <p>
+          This version uses Astro, Preact, a bunch of caching hacks, Vercel's
+          edge functions, and Planetscale's DatabaseJS package
+        </p>
+      </div>
+      <div class="p-4"></div>
+      <ul>
+        <li>
+          {"- "}
+          <a
+            class="text-blue-200 underline hover:text-blue-400"
+            href="https://twitter.com/t3dotgg"
+          >
+            Follow me on Twitter
+          </a>
+        </li>
+        <li>
+          {"- "}
+          <a
+            class="text-blue-200 underline hover:text-blue-400"
+            href="https://github.com/TheoBr/faster-round"
+          >
+            Public Github repo
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</Layout>
