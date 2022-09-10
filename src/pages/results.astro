@@ -27,6 +27,13 @@ const sorted = data.rows.sort((a, b) => {
 
 console.log("data", sorted[0]);
 const getImageForMon = (mon: number) => `/api/image/${mon}.png`;
+
+// Cache this page
+const FIVE_MIN_IN_SECONDS = 5 * 60;
+Astro.response.headers.set(
+  "Cache-Control",
+  `stale-while-revalidate=${FIVE_MIN_IN_SECONDS}`
+);
 ---
 
 <Layout title="Round But Faster">
