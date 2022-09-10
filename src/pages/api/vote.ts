@@ -3,6 +3,9 @@ const VOTE_SQL_STRING =
 
 import { connect } from "@planetscale/database";
 import { v4 as uuid } from "uuid";
+import { z } from "zod";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 
 export const makeVote = async (voteFor: number, voteAgainst: number) => {
   const conn = connect({
@@ -13,8 +16,30 @@ export const makeVote = async (voteFor: number, voteAgainst: number) => {
   return await conn.execute(VOTE_SQL_STRING, [uuid(), voteFor, voteAgainst]);
 };
 
-import { z } from "zod";
+const redis = new Redis({
+  url: import.meta.env.UPSTASH_REDIS_REST_URL!,
+  token: import.meta.env.UPSTASH_REDIS_REST_TOKEN!,
+});
+
+const ratelimit = new Ratelimit({
+  redis: redis,
+  limiter: Ratelimit.fixedWindow(20, "10 s"),
+});
+
 export async function post({ request }) {
+  const ip = request.ip ?? "127.0.0.1";
+
+  console.log("ip?", request, Astro.clientAddress);
+
+  const { success, pending, limit, reset, remaining } = await ratelimit.limit(
+    `mw_${ip}`
+  );
+
+  // Wait for any multi region sync shit
+  await pending;
+
+  if (!success) return new Response("Too many requests", { status: 429 });
+
   const data = await request.json();
 
   const validated = z
