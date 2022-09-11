@@ -35,7 +35,7 @@ export async function post({ request }) {
       Object.getOwnPropertySymbols(request)[import.meta.env.DEV ? 2 : 0]
     ] ?? "127.0.0.1";
   console.log("ip?", ip);
-  console.log("request?", request);
+  console.log("request?", request.headers.get("x-forwarded-for"));
   console.log("protos?", Object.getOwnPropertySymbols(request));
 
   const { success, pending, limit, reset, remaining } = await ratelimit.limit(
