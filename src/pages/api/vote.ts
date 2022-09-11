@@ -27,16 +27,10 @@ const ratelimit = new Ratelimit({
 });
 
 export async function post({ request }) {
-  // This is terribly cursed.
-  // I hope there's a better way to get a request IP
-  // without this madness
-  const ip =
-    request[
-      Object.getOwnPropertySymbols(request)[import.meta.env.DEV ? 2 : 0]
-    ] ?? "127.0.0.1";
-  console.log("ip?", ip);
-  console.log("request?", request.headers.get("x-forwarded-for"));
-  console.log("protos?", Object.getOwnPropertySymbols(request));
+  // Get request IP from vercel headers
+  const ip = request.headers.get("x-forwarded-for") ?? "127.0.0.1";
+  console.log("Logging for IP", ip);
+  console.log("headers", request.headers);
 
   const { success, pending, limit, reset, remaining } = await ratelimit.limit(
     `mw_${ip}`
