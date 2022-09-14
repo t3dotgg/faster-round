@@ -30,6 +30,7 @@ const PokemonListing: FunctionComponent<{
         layout="fixed"
         className="animate-fade-in"
         alt={`Sprite for ${ALL_MONS[props.pokemon - 1]}`}
+        style={{ imageRendering: "pixelated" }}
       />
       <button
         className={btn}
@@ -73,7 +74,6 @@ const Voter: FunctionComponent<{ a: number; b: number }> = ({
     // 1: process the vote
     const antiVote = vote === left ? right : left;
     console.log("voted", vote, antiVote);
-    // TODO - Do Vote
 
     fetch("/api/vote", {
       method: "POST",
