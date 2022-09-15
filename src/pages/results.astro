@@ -69,7 +69,13 @@ Astro.response.headers.set(
             <div class="relative flex border-b p-2 items-center justify-between">
               <div class="flex items-center">
                 <div class="flex items-center pl-4">
-                  <img src={getImageForMon(row.id)} width={64} height={64} />
+                  <img
+                    src={getImageForMon(row.id)}
+                    width={64}
+                    height={64}
+                    alt={`Sprite for ${ALL_MONS[row.id - 1]}`}
+                    style="image-rendering: pixelated;"
+                  />
                   <div class="pl-2 capitalize">{ALL_MONS[row.id - 1]}</div>
                 </div>
               </div>
