@@ -1,9 +1,10 @@
 ---
 export interface Props {
   title: string;
+  headerTitle: string;
 }
 
-const { title } = Astro.props;
+const { title, headerTitle } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -27,21 +28,32 @@ const { title } = Astro.props;
       content="Remake of roundest.t3.gg to see how fast it can be"
     />
   </head>
-  <body>
+  <body class="h-full flex flex-col justify-between items-center">
+    <header>
+      <div class="text-2xl text-center pt-8">{headerTitle}</div>
+    </header>
     <slot />
-    <style>
-      body {
-        @apply bg-gray-800 text-gray-100;
-      }
-    </style>
-    <div class="w-full text-xl text-center pb-2 fixed left-0 bottom-0">
+    <footer class="w-full text-xl text-center footer p-10">
       <a href="https://twitter.com/t3dotgg">Twitter</a>
-      <span class="p-4">{"-"}</span>
       <a href="/results"> Results</a>
-      <span class="p-4">{"-"}</span>
       <a href="/about"> About</a>
-      <span class="p-4">{"-"}</span>
       <a href="/"> Home</a>
-    </div>
+    </footer>
   </body>
 </html>
+<style>
+  html {
+    @apply h-full;
+  }
+  body {
+    @apply bg-gray-800 text-gray-100 mx-2;
+  }
+
+  .footer {
+    @apply gap-y-10 gap-x-4;
+  }
+  .footer *:not(:last-child) {
+    @apply after:content-['-'] after:mx-2;
+  }
+
+</style>

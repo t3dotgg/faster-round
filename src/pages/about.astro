@@ -1,17 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-import Counter from "../components/votes";
-import { getOptionsForVote } from "../data/getRandom";
-
-const options = getOptionsForVote();
 ---
 
-<Layout title="Round But Faster - About">
+<Layout title="Round But Faster - About" headerTitle="About">
   <div class="h-screen flex flex-col justify-center items-center relative">
     <div class="flex flex-col items-center text-xl max-w-md md:max-w-lg">
       <div class="contents text-center">
-        <h2 class="text-2xl p-4">About</h2>
         <p>
           I made <a
             href="https://roundest.t3.gg"

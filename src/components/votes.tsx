@@ -1,6 +1,6 @@
-import { h, Fragment, FunctionComponent } from "preact";
+import { FunctionComponent } from "preact";
 import { useEffect, useState } from "preact/hooks";
-import { getOptionsForVote, getRandomPokemon } from "../data/getRandom";
+import { getOptionsForVote } from "../data/getRandom";
 import { ALL_MONS } from "../data/mons";
 
 const btn =
