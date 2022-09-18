@@ -7,12 +7,6 @@ import { getOptionsForVote } from "../data/getRandom";
 const options = getOptionsForVote();
 ---
 
-<Layout title="Round But Faster">
-  <div class="h-screen flex flex-col justify-between items-center relative">
-    <div class="text-2xl text-center pt-8">Which Pokémon is Rounder?</div>
-
-    <Counter client:visible a={options[0]} b={options[1]} />
-
-    <div></div>
-  </div>
+<Layout title="Round But Faster" headerTitle="Which Pokémon is Rounder?">
+  <Counter client:visible a={options[0]} b={options[1]} />
 </Layout>
